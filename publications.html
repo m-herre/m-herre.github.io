@@ -99,12 +99,22 @@
               </p>
               <p class="pub-venue">2nd ICML Workshop on Foundation Models for Structured Data (2026)</p>
 
-              <div class="prose" style="margin-top: 0.75rem">
-                <p style="font-size: var(--t-sm); color: var(--text-2); max-width: 60ch">
-                  With tabular foundation models now competing with well-tuned tree ensembles, it's often unclear which
-                  family will win on a given dataset. We test whether model-agnostic dataset meta-features can explain
-                  these performance gaps across the 51 TabArena datasets — and find that, under strict statistical
-                  control, global meta-feature approaches are not robust enough to offer reliable explanations.
+              <div class="prose pub-abstract-full" style="margin-top: 0.75rem">
+                <p style="font-size: var(--t-base); color: var(--text-2); max-width: none">
+                  With the rise of tabular foundation models alongside traditional models still performing well on many
+                  tasks, choosing the right model for a tabular dataset remains difficult. We investigate whether
+                  dataset meta-features can explain performance gaps between model families on tabular prediction tasks.
+                  Using the TabArena benchmark results, we analyze dataset-level performance gaps and relate them to
+                  model-agnostic meta-features. After strict statistical tests with false discovery control, we find
+                  that
+                  <strong>(1)</strong> for neural network vs. tree gaps, no meta-feature survives false discovery
+                  control, <strong>(2)</strong> for non-foundation vs. foundation model gaps, one association is robust
+                  but does not generalize when tested in leave-one-dataset-out prediction, and <strong>(3)</strong> for
+                  TabICLv2 vs. TabPFN-2.6, one robust association also improves held-out prediction. Furthermore, we
+                  conduct a leave-one-dataset-out analysis and find that meta-feature predictors fail to improve
+                  meaningfully over a simple baseline. Overall, our results show the heterogeneity of tabular datasets
+                  and that global meta-feature approaches are not robust enough to offer explanations on the 51 TabArena
+                  datasets.
                 </p>
               </div>
 
