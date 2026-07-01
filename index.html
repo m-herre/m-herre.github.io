@@ -472,6 +472,22 @@
         font-style: italic;
       }
 
+      .pub-links {
+        margin-top: 0.35rem;
+        font-size: var(--text-xs);
+        color: var(--color-text-secondary);
+      }
+
+      .pub-links a {
+        color: var(--color-accent);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .pub-links a:hover {
+        color: var(--color-accent-hover);
+      }
+
       .pub-bibtex-toggle {
         margin-top: 0.35rem;
         font-size: var(--text-xs);
@@ -723,7 +739,7 @@
                 />
               </svg>
             </a>
-            <a href="https://scholar.google.com" aria-label="Google Scholar">
+            <a href="https://scholar.google.com/citations?user=tRHay2QAAAAJ" aria-label="Google Scholar">
               <svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
                 <path
                   d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM0.21 10L12 0l11.79 10H18v1.07A8.96 8.96 0 0 0 12 8a8.96 8.96 0 0 0-6 3.07V10H0.21z"
@@ -767,9 +783,9 @@
           <h2 class="section-heading">About</h2>
           <div class="about-content">
             <p>
-              I am a PhD researcher at Technische Universität Clausthal working on machine learning for structured data, 
-              with a focus on tabular domains. My work spans representation learning, model architectures, and learning 
-              dynamics for non-sequential data. Currently I am particularly interested in hypernetworks, foundation 
+              I am a PhD researcher at Technische Universität Clausthal working on machine learning for structured data,
+              with a focus on tabular domains. My work spans representation learning, model architectures, and learning
+              dynamics for non-sequential data. Currently I am particularly interested in hypernetworks, foundation
               models for tabular data, and differentiable decision tree ensembles.
             </p>
           </div>
@@ -797,96 +813,34 @@
           <h2 class="section-heading">Publications</h2>
 
           <div class="pub-year-group">
-            <h3 class="pub-year">2025</h3>
+            <h3 class="pub-year">2026</h3>
 
             <article class="pub-entry">
               <h4 class="pub-title">
-                <a href="#">Loading...</a>
+                <a href="https://openreview.net/forum?id=FJSkVoD4k3"
+                  >Explaining Tabular Foundation Model Differences Through Meta-Features</a
+                >
               </h4>
-              <p class="pub-authors"><strong>Markus Herre</strong>, Loading...</p>
-              <p class="pub-venue">Loading...</p>
+              <p class="pub-authors">
+                <strong>Markus Herre</strong>, Andrej Tschalzev, Sascha Marton, Christian Bartelt
+              </p>
+              <p class="pub-venue">2nd ICML Workshop on Foundation Models for Structured Data</p>
+              <p class="pub-links">
+                <a href="papers/mfa_workshop_paper-3.pdf">PDF</a> &middot;
+                <a href="https://arxiv.org/abs/2605.28418">arXiv</a> &middot;
+                <a href="https://openreview.net/forum?id=FJSkVoD4k3">OpenReview</a>
+              </p>
               <button class="pub-bibtex-toggle" aria-expanded="false" aria-controls="bib-1">BibTeX</button>
               <pre class="pub-bibtex" id="bib-1" hidden>
-@inproceedings{mueller2025scalable,
-  title={None},
-  author={Markus Herre},
-  booktitle={None},
-  year={2025}
-}</pre
-              >
-            <!-- </article>
-
-            <article class="pub-entry">
-              <h4 class="pub-title">
-                <a href="#">Data-Centric Approaches to Robust Model Training in Low-Resource Settings</a>
-              </h4>
-              <p class="pub-authors"><strong>Markus Herre</strong>, B. Fischer, E. Novak</p>
-              <p class="pub-venue">ICML 2025</p>
-              <button class="pub-bibtex-toggle" aria-expanded="false" aria-controls="bib-2">BibTeX</button>
-              <pre class="pub-bibtex" id="bib-2" hidden>
-@inproceedings{yourname2025datacentric,
-  title={Data-Centric Approaches to Robust Model Training in Low-Resource Settings},
-  author={Markus Herre and Fischer, Benedikt and Novak, Elena},
-  booktitle={Proceedings of the International Conference on Machine Learning},
-  year={2025}
+@inproceedings{herre2026explaining,
+  title={Explaining Tabular Foundation Model Differences Through Meta-Features},
+  author={Markus Herre and Andrej Tschalzev and Sascha Marton and Christian Bartelt},
+  booktitle={2nd ICML Workshop on Foundation Models for Structured Data},
+  year={2026},
+  url={https://openreview.net/forum?id=FJSkVoD4k3}
 }</pre
               >
             </article>
-
-            <article class="pub-entry">
-              <h4 class="pub-title">
-                <a href="#">Efficient Pruning Strategies for Large Language Models via Gradient-Informed Sparsity</a>
-              </h4>
-              <p class="pub-authors">C. Zhang, <strong>Markus Herre</strong>, F. Patel</p>
-              <p class="pub-venue">ICLR 2025</p>
-              <button class="pub-bibtex-toggle" aria-expanded="false" aria-controls="bib-3">BibTeX</button>
-              <pre class="pub-bibtex" id="bib-3" hidden>
-@inproceedings{zhang2025efficient,
-  title={Efficient Pruning Strategies for Large Language Models via Gradient-Informed Sparsity},
-  author={Zhang, Chen and Markus Herre and Patel, Fatima},
-  booktitle={Proceedings of the International Conference on Learning Representations},
-  year={2025}
-}</pre
-              >
-            </article>
-          </div>
-
-          <div class="pub-year-group">
-            <h3 class="pub-year">2024</h3>
-
-            <article class="pub-entry">
-              <h4 class="pub-title">
-                <a href="#">Benchmarking Robustness in Real-World Machine Learning Pipelines</a>
-              </h4>
-              <p class="pub-authors"><strong>Markus Herre</strong>, A. M&uuml;ller, G. Kim</p>
-              <p class="pub-venue">NeurIPS 2024</p>
-              <button class="pub-bibtex-toggle" aria-expanded="false" aria-controls="bib-4">BibTeX</button>
-              <pre class="pub-bibtex" id="bib-4" hidden>
-@inproceedings{yourname2024benchmarking,
-  title={Benchmarking Robustness in Real-World Machine Learning Pipelines},
-  author={Markus Herre and M{\"u}ller, Anna and Kim, Grace},
-  booktitle={Advances in Neural Information Processing Systems},
-  year={2024}
-}</pre
-              >
-            </article>
-
-            <article class="pub-entry">
-              <h4 class="pub-title">
-                <a href="#">On the Reproducibility of Deep Learning Experiments: A Large-Scale Empirical Study</a>
-              </h4>
-              <p class="pub-authors">B. Fischer, <strong>Markus Herre</strong>, H. Tanaka, I. Reyes</p>
-              <p class="pub-venue">ICML 2024</p>
-              <button class="pub-bibtex-toggle" aria-expanded="false" aria-controls="bib-5">BibTeX</button>
-              <pre class="pub-bibtex" id="bib-5" hidden>
-@inproceedings{fischer2024reproducibility,
-  title={On the Reproducibility of Deep Learning Experiments: A Large-Scale Empirical Study},
-  author={Fischer, Benedikt and Markus Herre and Tanaka, Hiroshi and Reyes, Isabella},
-  booktitle={Proceedings of the International Conference on Machine Learning},
-  year={2024}
-}</pre
-              >
-            </article> -->
           </div>
         </div>
       </section>
@@ -901,7 +855,7 @@
               <h3 class="timeline-role">Machine Learning Researcher &amp; Engineer</h3>
               <p class="timeline-org">Technische Universit&auml;t Clausthal &middot; Goslar, Germany</p>
               <p class="timeline-desc">
-                Research on machine learning for structured data, with a focus on tabular domains, model architectures, 
+                Research on machine learning for structured data, with a focus on tabular domains, model architectures,
                 and representation learning.
               </p>
             </li>
@@ -955,7 +909,7 @@
               <h3 class="timeline-role">Ph.D. Candidate in Machine Learning</h3>
               <p class="timeline-org">Technische Universit&auml;t Clausthal &middot; Clausthal-Zellerfeld, Germany</p>
               <p class="timeline-desc">
-                Research on machine learning for structured data, with a focus on tabular domains, model architectures, 
+                Research on machine learning for structured data, with a focus on tabular domains, model architectures,
                 and representation learning.
               </p>
             </li>
@@ -1006,6 +960,7 @@
               <p class="news-text">
                 Began an exchange semester at the University of Padua as part of the M.Sc. program.
               </p>
+            </li>
           </ul>
         </div>
       </section>
@@ -1030,7 +985,7 @@
               />
             </svg>
           </a>
-          <a href="https://scholar.google.com" aria-label="Google Scholar">
+          <a href="https://scholar.google.com/citations?user=tRHay2QAAAAJ" aria-label="Google Scholar">
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
               <path
                 d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM0.21 10L12 0l11.79 10H18v1.07A8.96 8.96 0 0 0 12 8a8.96 8.96 0 0 0-6 3.07V10H0.21z"
