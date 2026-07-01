@@ -472,6 +472,24 @@
         font-style: italic;
       }
 
+      .pub-abstract {
+        margin-top: var(--space-xs);
+        font-size: var(--text-sm);
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+      }
+
+      .pub-figure {
+        margin-top: var(--space-sm);
+      }
+
+      .pub-figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--color-line);
+      }
+
       .pub-links {
         margin-top: 0.35rem;
         font-size: var(--text-xs);
@@ -825,6 +843,26 @@
                 <strong>Markus Herre</strong>, Andrej Tschalzev, Sascha Marton, Christian Bartelt
               </p>
               <p class="pub-venue">2nd ICML Workshop on Foundation Models for Structured Data</p>
+              <p class="pub-abstract">
+                With the rise of tabular foundation models alongside traditional models still performing well on many
+                tasks, choosing the right model for a tabular dataset remains difficult. We investigate whether dataset
+                meta-features can explain performance gaps between model families on tabular prediction tasks. Using the
+                TabArena benchmark results, we analyze dataset-level performance gaps and relate them to model-agnostic
+                meta-features. After strict statistical tests with false discovery control, we find that (1) for neural
+                network vs. tree gaps, no meta-feature survives false discovery control, (2) for non-foundation vs.
+                foundation model gaps, one association is robust but does not generalize when tested in
+                leave-one-dataset-out prediction, and (3) for TabICLv2 vs. TabPFN-2.6, one robust association also
+                improves held-out prediction. Furthermore, we conduct a leave-one-dataset-out analysis and find that
+                meta-feature predictors fail to improve meaningfully over a simple baseline. Overall, our results show
+                the heterogeneity of tabular datasets and that global meta-feature approaches are not robust enough to
+                offer explanations on the 51 TabArena datasets.
+              </p>
+              <figure class="pub-figure">
+                <img
+                  src="papers/mfa-workshop-figure1.png"
+                  alt="Figure 1: Two panels comparing TabICLv2 and TabPFN-2.6. Left, ROC AUC vs. total feature count d: both models track together until d grows large, where TabICLv2 drops sharply while TabPFN-2.6 stays flat. Right, the TabICLv2-minus-TabPFN AUC gap as a function of redundant nuisance fraction: many independent columns favor TabPFN, but converting them into redundant copies closes the gap toward zero."
+                />
+              </figure>
               <p class="pub-links">
                 <a href="papers/mfa_workshop_paper-3.pdf">PDF</a> &middot;
                 <a href="https://arxiv.org/abs/2605.28418">arXiv</a> &middot;
@@ -945,6 +983,16 @@
         <div class="container">
           <h2 class="section-heading">News</h2>
           <ul class="news-list" role="list">
+            <li class="news-item">
+              <time datetime="2026-07-01" class="news-date">Jul 2026</time>
+              <p class="news-text">
+                Our paper
+                <a href="#publications"
+                  >&ldquo;Explaining Tabular Foundation Model Differences Through Meta-Features&rdquo;</a
+                >
+                was accepted at the 2nd ICML Workshop on Foundation Models for Structured Data in Seoul.
+              </p>
+            </li>
             <li class="news-item">
               <time datetime="2026-03-01" class="news-date">Mar 2026</time>
               <p class="news-text">
