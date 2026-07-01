@@ -95,674 +95,25 @@
       }
     </script>
 
-    <!-- Prevent flash of wrong theme -->
+    <!-- Prevent flash of wrong theme / display -->
     <script>
       (function () {
         var t = localStorage.getItem("theme");
-        if (t) {
-          document.documentElement.setAttribute("data-theme", t);
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        if (t) document.documentElement.setAttribute("data-theme", t);
+        else if (window.matchMedia("(prefers-color-scheme: dark)").matches)
           document.documentElement.setAttribute("data-theme", "dark");
-        }
+        var d = localStorage.getItem("display");
+        if (d) document.documentElement.setAttribute("data-display", d);
       })();
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-    <style>
-      /* ===== Custom Properties ===== */
-
-      :root {
-        --color-bg: #fafafa;
-        --color-text: #1d1d1f;
-        --color-text-secondary: #6e6e73;
-        --color-accent: #0071e3;
-        --color-accent-hover: #0077ed;
-        --color-line: rgba(0, 0, 0, 0.08);
-        --color-surface: #ffffff;
-        --color-code-bg: #f5f5f7;
-
-        --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        --font-mono: "SF Mono", SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-
-        --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-        --text-sm: 0.875rem;
-        --text-xs: 0.8125rem;
-        --text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
-        --text-xl: clamp(1.25rem, 1rem + 1vw, 1.75rem);
-        --text-2xl: clamp(1.5rem, 1.25rem + 1.5vw, 2.25rem);
-        --text-hero: clamp(2.5rem, 2rem + 4vw, 5rem);
-
-        --leading: 1.7;
-        --leading-tight: 1.2;
-
-        --space-xs: 0.5rem;
-        --space-sm: 1rem;
-        --space-md: 2rem;
-        --space-lg: 4rem;
-        --space-xl: 6rem;
-        --space-section: clamp(4rem, 3rem + 5vw, 8rem);
-
-        --max-width: 720px;
-        --header-height: 3.5rem;
-
-        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        --duration: 0.4s;
-      }
-
-      [data-theme="dark"] {
-        --color-bg: #0a0a0a;
-        --color-text: #f5f5f7;
-        --color-text-secondary: #a1a1a6;
-        --color-accent: #2997ff;
-        --color-accent-hover: #40a9ff;
-        --color-line: rgba(255, 255, 255, 0.1);
-        --color-surface: #1c1c1e;
-        --color-code-bg: #1c1c1e;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) {
-          --color-bg: #0a0a0a;
-          --color-text: #f5f5f7;
-          --color-text-secondary: #a1a1a6;
-          --color-accent: #2997ff;
-          --color-accent-hover: #40a9ff;
-          --color-line: rgba(255, 255, 255, 0.1);
-          --color-surface: #1c1c1e;
-          --color-code-bg: #1c1c1e;
-        }
-      }
-
-      /* ===== Reset ===== */
-
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: calc(var(--header-height) + 1rem);
-      }
-
-      body {
-        font-family: var(--font-body);
-        font-size: var(--text-base);
-        line-height: var(--leading);
-        color: var(--color-text);
-        background: var(--color-bg);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      img {
-        display: block;
-        max-width: 100%;
-      }
-
-      a {
-        color: var(--color-accent);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-
-      a:hover {
-        color: var(--color-accent-hover);
-      }
-
-      button {
-        font: inherit;
-        color: inherit;
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
-
-      ul,
-      ol {
-        list-style: none;
-      }
-
-      /* ===== Focus ===== */
-
-      :focus-visible {
-        outline: 2px solid var(--color-accent);
-        outline-offset: 2px;
-      }
-
-      /* ===== Skip Link ===== */
-
-      .skip-link {
-        position: absolute;
-        top: -100%;
-        left: var(--space-sm);
-        padding: var(--space-xs) var(--space-sm);
-        background: var(--color-text);
-        color: var(--color-bg);
-        font-size: var(--text-sm);
-        z-index: 200;
-        transition: top 0.2s ease;
-      }
-
-      .skip-link:focus {
-        top: var(--space-xs);
-      }
-
-      /* ===== Layout ===== */
-
-      .container {
-        max-width: var(--max-width);
-        margin: 0 auto;
-        padding: 0 var(--space-md);
-      }
-
-      .section {
-        padding: var(--space-section) 0;
-      }
-
-      /* ===== Header ===== */
-
-      .site-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: var(--header-height);
-        background: var(--color-bg);
-        border-bottom: 1px solid var(--color-line);
-        z-index: 100;
-        transform: translateY(-100%);
-        transition: transform 0.3s var(--ease);
-      }
-
-      .site-header.header--visible {
-        transform: translateY(0);
-      }
-
-      .nav {
-        max-width: var(--max-width);
-        margin: 0 auto;
-        padding: 0 var(--space-md);
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--space-md);
-      }
-
-      .nav-logo {
-        font-weight: 600;
-        font-size: var(--text-base);
-        color: var(--color-text);
-        letter-spacing: -0.02em;
-        text-decoration: none;
-        flex-shrink: 0;
-      }
-
-      .nav-logo:hover {
-        color: var(--color-text);
-      }
-
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: var(--space-md);
-      }
-
-      .nav-links a {
-        font-size: var(--text-sm);
-        color: var(--color-text-secondary);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-
-      .nav-links a:hover {
-        color: var(--color-text);
-      }
-
-      .nav-toggle {
-        display: none;
-        width: 24px;
-        height: 24px;
-        padding: 0;
-        color: var(--color-text);
-      }
-
-      .theme-toggle {
-        width: 24px;
-        height: 24px;
-        padding: 0;
-        color: var(--color-text-secondary);
-        flex-shrink: 0;
-        transition: color 0.2s ease;
-      }
-
-      .theme-toggle:hover {
-        color: var(--color-text);
-      }
-
-      .theme-toggle .icon-sun,
-      .theme-toggle .icon-moon {
-        display: none;
-      }
-
-      /* Show sun in dark mode (click to go light), moon in light mode (click to go dark) */
-      [data-theme="dark"] .theme-toggle .icon-sun {
-        display: block;
-      }
-
-      [data-theme="dark"] .theme-toggle .icon-moon {
-        display: none;
-      }
-
-      :root:not([data-theme="dark"]) .theme-toggle .icon-moon {
-        display: block;
-      }
-
-      :root:not([data-theme="dark"]) .theme-toggle .icon-sun {
-        display: none;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) .theme-toggle .icon-sun {
-          display: block;
-        }
-
-        :root:not([data-theme="light"]) .theme-toggle .icon-moon {
-          display: none;
-        }
-      }
-
-      /* Mobile nav */
-      @media (max-width: 1023px) {
-        .nav-toggle {
-          display: block;
-        }
-
-        .nav-links {
-          position: absolute;
-          top: var(--header-height);
-          left: 0;
-          right: 0;
-          flex-direction: column;
-          background: var(--color-bg);
-          border-bottom: 1px solid var(--color-line);
-          padding: var(--space-sm) var(--space-md);
-          gap: 0;
-          transform: translateY(-100%);
-          opacity: 0;
-          pointer-events: none;
-          transition:
-            transform 0.3s var(--ease),
-            opacity 0.3s var(--ease);
-        }
-
-        .nav-links a {
-          display: block;
-          padding: var(--space-xs) 0;
-          font-size: var(--text-base);
-        }
-
-        .site-header.nav-open .nav-links {
-          transform: translateY(0);
-          opacity: 1;
-          pointer-events: auto;
-        }
-      }
-
-      /* ===== Hero ===== */
-
-      .hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .hero-name {
-        font-size: var(--text-hero);
-        font-weight: 300;
-        line-height: var(--leading-tight);
-        letter-spacing: -0.03em;
-        color: var(--color-text);
-      }
-
-      .hero-tagline {
-        margin-top: var(--space-sm);
-        font-size: var(--text-lg);
-        font-weight: 400;
-        color: var(--color-text-secondary);
-      }
-
-      .hero-links {
-        display: flex;
-        justify-content: center;
-        gap: var(--space-md);
-        margin-top: var(--space-md);
-      }
-
-      .hero-links a {
-        color: var(--color-text-secondary);
-        transition: color 0.2s ease;
-      }
-
-      .hero-links a:hover {
-        color: var(--color-text);
-      }
-
-      .icon {
-        width: 22px;
-        height: 22px;
-        display: block;
-      }
-
-      /* ===== About ===== */
-
-      .about-content {
-        max-width: 60ch;
-      }
-
-      .about-content p {
-        color: var(--color-text-secondary);
-        font-size: var(--text-lg);
-        line-height: var(--leading);
-      }
-
-      /* ===== Section Headings ===== */
-
-      .section-heading {
-        font-size: var(--text-2xl);
-        font-weight: 600;
-        line-height: var(--leading-tight);
-        letter-spacing: -0.02em;
-        margin-bottom: var(--space-lg);
-      }
-
-      /* ===== Research Tags ===== */
-
-      .tag-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-xs);
-      }
-
-      .tag {
-        display: inline-block;
-        padding: 0.3rem 0.85rem;
-        border: 1px solid var(--color-line);
-        font-size: var(--text-sm);
-        color: var(--color-text-secondary);
-        letter-spacing: 0.01em;
-      }
-
-      /* ===== Publications ===== */
-
-      .pub-year-group {
-        margin-bottom: var(--space-lg);
-      }
-
-      .pub-year-group:last-child {
-        margin-bottom: 0;
-      }
-
-      .pub-year {
-        font-size: var(--text-sm);
-        font-weight: 600;
-        color: var(--color-text-secondary);
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        margin-bottom: var(--space-md);
-      }
-
-      .pub-entry {
-        margin-bottom: var(--space-md);
-      }
-
-      .pub-entry:last-child {
-        margin-bottom: 0;
-      }
-
-      .pub-title {
-        font-size: var(--text-base);
-        font-weight: 500;
-        line-height: 1.5;
-      }
-
-      .pub-title a {
-        color: var(--color-text);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-
-      .pub-title a:hover {
-        color: var(--color-accent);
-      }
-
-      .pub-authors {
-        margin-top: 0.25rem;
-        font-size: var(--text-sm);
-        color: var(--color-text-secondary);
-      }
-
-      .pub-venue {
-        margin-top: 0.15rem;
-        font-size: var(--text-sm);
-        color: var(--color-text-secondary);
-        font-style: italic;
-      }
-
-      .pub-abstract {
-        margin-top: var(--space-xs);
-        font-size: var(--text-sm);
-        line-height: 1.7;
-        color: var(--color-text-secondary);
-      }
-
-      .pub-figure {
-        margin-top: var(--space-sm);
-      }
-
-      .pub-figure img {
-        display: block;
-        width: 100%;
-        height: auto;
-        border: 1px solid var(--color-line);
-      }
-
-      .pub-links {
-        margin-top: 0.35rem;
-        font-size: var(--text-xs);
-        color: var(--color-text-secondary);
-      }
-
-      .pub-links a {
-        color: var(--color-accent);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-
-      .pub-links a:hover {
-        color: var(--color-accent-hover);
-      }
-
-      .pub-bibtex-toggle {
-        margin-top: 0.35rem;
-        font-size: var(--text-xs);
-        color: var(--color-accent);
-        cursor: pointer;
-        transition: color 0.2s ease;
-      }
-
-      .pub-bibtex-toggle:hover {
-        color: var(--color-accent-hover);
-      }
-
-      .pub-bibtex {
-        margin-top: var(--space-xs);
-        padding: var(--space-sm);
-        background: var(--color-code-bg);
-        border: 1px solid var(--color-line);
-        font-family: var(--font-mono);
-        font-size: var(--text-xs);
-        line-height: 1.6;
-        white-space: pre-wrap;
-        word-break: break-all;
-        overflow-x: auto;
-      }
-
-      /* ===== Experience ===== */
-
-      .timeline {
-        border-left: 1px solid var(--color-line);
-        padding-left: var(--space-md);
-      }
-
-      .timeline-item {
-        position: relative;
-        margin-bottom: var(--space-lg);
-      }
-
-      .timeline-item:last-child {
-        margin-bottom: 0;
-      }
-
-      .timeline-item::before {
-        content: "";
-        position: absolute;
-        left: calc(-1 * var(--space-md) - 3px);
-        top: 0.55em;
-        width: 6px;
-        height: 6px;
-        background: var(--color-text-secondary);
-        border-radius: 50%;
-      }
-
-      .timeline-date {
-        display: block;
-        font-size: var(--text-sm);
-        color: var(--color-text-secondary);
-        margin-bottom: 0.15rem;
-      }
-
-      .timeline-role {
-        font-size: var(--text-base);
-        font-weight: 500;
-      }
-
-      .timeline-org {
-        font-size: var(--text-sm);
-        color: var(--color-text-secondary);
-        margin-top: 0.1rem;
-      }
-
-      .timeline-desc {
-        font-size: var(--text-sm);
-        color: var(--color-text-secondary);
-        margin-top: 0.25rem;
-      }
-
-      /* ===== News ===== */
-
-      .news-list {
-        display: grid;
-        gap: var(--space-sm);
-      }
-
-      .news-item {
-        display: flex;
-        gap: var(--space-md);
-        align-items: baseline;
-      }
-
-      .news-date {
-        font-size: var(--text-sm);
-        color: var(--color-text-secondary);
-        flex-shrink: 0;
-        min-width: 5.5rem;
-      }
-
-      .news-text {
-        font-size: var(--text-base);
-        color: var(--color-text);
-      }
-
-      .news-item--faded {
-        opacity: 0.55;
-      }
-
-      @media (max-width: 639px) {
-        .news-item {
-          flex-direction: column;
-          gap: 0.15rem;
-        }
-      }
-
-      /* ===== Footer ===== */
-
-      .site-footer {
-        padding: var(--space-xl) 0 var(--space-lg);
-        text-align: center;
-      }
-
-      .site-footer p {
-        font-size: var(--text-sm);
-        color: var(--color-text-secondary);
-      }
-
-      .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: var(--space-md);
-        margin-top: var(--space-sm);
-      }
-
-      .footer-links a {
-        color: var(--color-text-secondary);
-        transition: color 0.2s ease;
-      }
-
-      .footer-links a:hover {
-        color: var(--color-text);
-      }
-
-      /* ===== Scroll Animations ===== */
-
-      .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
-        transition:
-          opacity var(--duration) var(--ease),
-          transform var(--duration) var(--ease);
-      }
-
-      .fade-in.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        .fade-in {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-
-        .site-header {
-          transition: none;
-        }
-      }
-    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
   </head>
 
   <body>
@@ -771,177 +122,186 @@
     <!-- ===== Header ===== -->
     <header class="site-header" id="site-header" role="banner">
       <nav class="nav" aria-label="Main navigation">
-        <a href="#hero" class="nav-logo">MH</a>
-
-        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
+        <a href="index.html" class="nav-logo"><span class="dot"></span>Markus Herre</a>
+        <button
+          class="icon-btn nav-toggle"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+          aria-label="Toggle navigation"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
           </svg>
         </button>
-
         <ul id="nav-menu" class="nav-links" role="list">
-          <li><a href="#about">About</a></li>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#news">News</a></li>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="cv.html">CV</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
-
-        <button class="theme-toggle" aria-label="Toggle dark mode">
-          <svg
-            class="icon icon-moon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            aria-hidden="true"
-          >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
-          </svg>
-          <svg
-            class="icon icon-sun"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="5" />
-            <line x1="12" y1="1" x2="12" y2="3" />
-            <line x1="12" y1="21" x2="12" y2="23" />
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-            <line x1="1" y1="12" x2="3" y2="12" />
-            <line x1="21" y1="12" x2="23" y2="12" />
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-          </svg>
-        </button>
+        <div class="nav-actions">
+          <button class="icon-btn theme-toggle" aria-label="Toggle dark mode">
+            <svg
+              class="icon-moon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+            </svg>
+            <svg
+              class="icon-sun"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4.5" />
+              <line x1="12" y1="2" x2="12" y2="4" />
+              <line x1="12" y1="20" x2="12" y2="22" />
+              <line x1="4.93" y1="4.93" x2="6.34" y2="6.34" />
+              <line x1="17.66" y1="17.66" x2="19.07" y2="19.07" />
+              <line x1="2" y1="12" x2="4" y2="12" />
+              <line x1="20" y1="12" x2="22" y2="12" />
+              <line x1="4.93" y1="19.07" x2="6.34" y2="17.66" />
+              <line x1="17.66" y1="6.34" x2="19.07" y2="4.93" />
+            </svg>
+          </button>
+        </div>
       </nav>
     </header>
 
     <main>
-      <!-- ===== Hero ===== -->
-      <section id="hero" class="hero" aria-label="Introduction">
-        <div class="container">
-          <h1 class="hero-name">Markus Herre</h1>
-          <p class="hero-tagline">PhD Researcher in Machine Learning &middot; TU Clausthal</p>
-          <div class="hero-links" role="list" aria-label="Social links">
-            <a href="https://github.com/m-herre" aria-label="GitHub">
-              <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                aria-hidden="true"
-              >
-                <path
-                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                />
-              </svg>
-            </a>
-            <a href="https://scholar.google.com/citations?user=tRHay2QAAAAJ" aria-label="Google Scholar">
-              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
-                <path
-                  d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM0.21 10L12 0l11.79 10H18v1.07A8.96 8.96 0 0 0 12 8a8.96 8.96 0 0 0-6 3.07V10H0.21z"
-                />
-              </svg>
-            </a>
-            <a href="https://linkedin.com/in/markus-herre" aria-label="LinkedIn">
-              <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                aria-hidden="true"
-              >
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
-                <rect x="2" y="9" width="4" height="12" />
-                <circle cx="4" cy="4" r="2" />
-              </svg>
-            </a>
-            <a href="mailto:markus.herre@tu-clausthal.de" aria-label="Email">
-              <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                aria-hidden="true"
-              >
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-            </a>
+      <!-- ===== HERO ===== -->
+      <section class="hero" id="hero" data-active="A" aria-label="Introduction">
+        <div class="container container--wide">
+          <!-- Variant A: Quiet -->
+          <div class="hero-variant hero-variant--A">
+            <h1 class="hero-name">Markus Herre</h1>
+            <p class="hero-role">PhD Researcher · Machine Learning</p>
+            <p class="hero-affil">Technische Universität Clausthal</p>
+            <div class="hero-links" role="list" aria-label="Social links">
+              <a href="https://github.com/m-herre" aria-label="GitHub"
+                ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                  /></svg
+              ></a>
+              <a href="https://scholar.google.com/citations?user=tRHay2QAAAAJ" aria-label="Google Scholar"
+                ><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                  <path
+                    d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM0.21 10L12 0l11.79 10H18v1.07A8.96 8.96 0 0 0 12 8a8.96 8.96 0 0 0-6 3.07V10H0.21z"
+                  /></svg
+              ></a>
+              <a href="https://linkedin.com/in/markus-herre" aria-label="LinkedIn"
+                ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" /></svg
+              ></a>
+              <a href="mailto:markus.herre@tu-clausthal.de" aria-label="Email"
+                ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <polyline points="22,6 12,13 2,6" /></svg
+              ></a>
+            </div>
           </div>
         </div>
       </section>
 
+      <hr class="divider" />
+
       <!-- ===== About ===== -->
       <section id="about" class="section fade-in" aria-label="About">
         <div class="container">
-          <h2 class="section-heading">About</h2>
-          <div class="about-content">
+          <p class="eyebrow">About</p>
+          <h2 class="section-title section-title--lg">
+            Machine learning for structured data — with a focus on tabular domains.
+          </h2>
+          <div class="prose">
             <p>
-              I am a PhD researcher at Technische Universität Clausthal working on machine learning for structured data,
-              with a focus on tabular domains. My work spans representation learning, model architectures, and learning
-              dynamics for non-sequential data. Currently I am particularly interested in hypernetworks, foundation
-              models for tabular data, and differentiable decision tree ensembles.
+              I'm a PhD researcher at <strong>Technische Universität Clausthal</strong>, working on machine learning for
+              structured data. My research spans representation learning, model architectures, and learning dynamics for
+              non-sequential data.
+            </p>
+            <p>
+              Right now I'm particularly interested in <strong>tabular foundation models</strong>,
+              <strong>hypernetworks</strong>, and <strong>differentiable decision tree ensembles</strong> — and in the
+              methodological question of when these new families actually beat well-tuned gradient-boosted trees.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- ===== Research Interests ===== -->
-      <section id="research" class="section fade-in" aria-label="Research Interests">
+      <!-- ===== Inline stats ===== -->
+      <section class="section--tight fade-in" aria-label="Highlights">
         <div class="container">
-          <h2 class="section-heading">Research Interests</h2>
+          <div class="quick-grid">
+            <a class="quick-card" href="publications.html">
+              <span class="qc-label">Publications</span>
+              <span class="qc-title">Explaining Tabular Foundation Model Differences Through Meta-Features</span>
+              <span class="qc-meta">Accepted · ICML Workshop 2026</span>
+              <svg class="qc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M7 17L17 7M9 7h8v8" />
+              </svg>
+            </a>
+            <a class="quick-card" href="cv.html">
+              <span class="qc-label">Currently</span>
+              <span class="qc-title">PhD Candidate, ML Group · TU Clausthal</span>
+              <span class="qc-meta">Goslar, Germany · From March 2026</span>
+              <svg class="qc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M7 17L17 7M9 7h8v8" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Research interests ===== -->
+      <section id="research" class="section fade-in" aria-label="Research interests">
+        <div class="container">
+          <p class="eyebrow">Interests</p>
+          <h2 class="section-title">Research</h2>
           <ul class="tag-row" role="list">
-            <li class="tag">Tabular Learning</li>
-            <li class="tag">Structured Data</li>
+            <li class="tag">Tabular Foundation Models</li>
+            <li class="tag">Meta-features &amp; Routing</li>
+            <li class="tag">Hypernetworks</li>
+            <li class="tag">Differentiable Trees</li>
             <li class="tag">Representation Learning</li>
             <li class="tag">Model Architectures</li>
-            <li class="tag">Hypernetworks</li>
-            <li class="tag">Differentiable Tree Models</li>
+            <li class="tag">Benchmarking</li>
+            <li class="tag">Reproducibility</li>
           </ul>
         </div>
       </section>
 
-      <!-- ===== Publications ===== -->
-      <section id="publications" class="section fade-in" aria-label="Publications">
+      <!-- ===== Featured paper ===== -->
+      <section id="paper" class="section fade-in" aria-label="Selected work">
         <div class="container">
-          <h2 class="section-heading">Publications</h2>
+          <p class="eyebrow">Selected work</p>
+          <h2 class="section-title">Latest paper</h2>
 
-          <div class="pub-year-group">
-            <h3 class="pub-year">2026</h3>
-
-            <article class="pub-entry">
-              <h4 class="pub-title">
-                <a href="https://openreview.net/forum?id=FJSkVoD4k3"
-                  >Explaining Tabular Foundation Model Differences Through Meta-Features</a
-                >
-              </h4>
+          <article class="feature-pub">
+            <div class="fp-stamp">
+              <span class="fp-year">2026</span>
+              <span>ICML Workshop</span>
+              <span>First-author</span>
+            </div>
+            <div>
+              <h3 class="fp-title">Explaining Tabular Foundation Model Differences Through Meta-Features</h3>
               <p class="pub-authors">
-                <strong>Markus Herre</strong>, Andrej Tschalzev, Sascha Marton, Christian Bartelt
+                <span class="me">Markus Herre</span>, Andrej Tschalzev, Sascha Marton, Christian Bartelt
               </p>
-              <p class="pub-venue">2nd ICML Workshop on Foundation Models for Structured Data</p>
-              <p class="pub-abstract">
-                With the rise of tabular foundation models alongside traditional models still performing well on many
-                tasks, choosing the right model for a tabular dataset remains difficult. We investigate whether dataset
-                meta-features can explain performance gaps between model families on tabular prediction tasks. Using the
-                TabArena benchmark results, we analyze dataset-level performance gaps and relate them to model-agnostic
-                meta-features. After strict statistical tests with false discovery control, we find that (1) for neural
-                network vs. tree gaps, no meta-feature survives false discovery control, (2) for non-foundation vs.
-                foundation model gaps, one association is robust but does not generalize when tested in
-                leave-one-dataset-out prediction, and (3) for TabICLv2 vs. TabPFN-2.6, one robust association also
-                improves held-out prediction. Furthermore, we conduct a leave-one-dataset-out analysis and find that
-                meta-feature predictors fail to improve meaningfully over a simple baseline. Overall, our results show
-                the heterogeneity of tabular datasets and that global meta-feature approaches are not robust enough to
-                offer explanations on the 51 TabArena datasets.
+              <p class="fp-abstract">
+                With tabular foundation models now competing with well-tuned tree ensembles, it's often unclear which
+                family will win on a given dataset. We test whether model-agnostic dataset meta-features can explain
+                these performance gaps across the 51 TabArena datasets — and find that, under strict statistical
+                control, global meta-feature approaches are not robust enough to offer reliable explanations.
               </p>
               <figure class="pub-figure">
                 <img
@@ -949,141 +309,43 @@
                   alt="Figure 1: Two panels comparing TabICLv2 and TabPFN-2.6. Left, ROC AUC vs. total feature count d: both models track together until d grows large, where TabICLv2 drops sharply while TabPFN-2.6 stays flat. Right, the TabICLv2-minus-TabPFN AUC gap as a function of redundant nuisance fraction: many independent columns favor TabPFN, but converting them into redundant copies closes the gap toward zero."
                 />
               </figure>
-              <p class="pub-links">
-                <a href="papers/mfa_workshop_paper-3.pdf">PDF</a> &middot;
-                <a href="https://arxiv.org/abs/2605.28418">arXiv</a> &middot;
-                <a href="https://openreview.net/forum?id=FJSkVoD4k3">OpenReview</a>
-              </p>
-              <button class="pub-bibtex-toggle" aria-expanded="false" aria-controls="bib-1">BibTeX</button>
-              <pre class="pub-bibtex" id="bib-1" hidden>
+              <div class="pub-actions" style="margin-top: 1rem">
+                <a href="publications.html#paper-tabarena">Details</a>
+                <a href="papers/mfa_workshop_paper-3.pdf">PDF</a>
+                <a href="https://arxiv.org/abs/2605.28418" rel="external">arXiv</a>
+                <a href="https://openreview.net/forum?id=FJSkVoD4k3" rel="external">OpenReview</a>
+                <button class="pub-bibtex-toggle" aria-expanded="false" aria-controls="bib-home-1">BibTeX</button>
+              </div>
+              <pre class="pub-bibtex" id="bib-home-1" hidden>
 @inproceedings{herre2026explaining,
-  title={Explaining Tabular Foundation Model Differences Through Meta-Features},
-  author={Markus Herre and Andrej Tschalzev and Sascha Marton and Christian Bartelt},
-  booktitle={2nd ICML Workshop on Foundation Models for Structured Data},
-  year={2026},
-  url={https://openreview.net/forum?id=FJSkVoD4k3}
+  title     = {Explaining Tabular Foundation Model Differences Through Meta-Features},
+  author    = {Markus Herre and Andrej Tschalzev and Sascha Marton and Christian Bartelt},
+  booktitle = {2nd ICML Workshop on Foundation Models for Structured Data},
+  year      = {2026},
+  url       = {https://openreview.net/forum?id=FJSkVoD4k3}
 }</pre
               >
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===== Experience ===== -->
-      <section id="experience" class="section fade-in" aria-label="Experience">
-        <div class="container">
-          <h2 class="section-heading">Experience</h2>
-          <ol class="timeline" role="list">
-            <li class="timeline-item">
-              <span class="timeline-date">Mar 2026 &ndash; Present</span>
-              <h3 class="timeline-role">Machine Learning Researcher &amp; Engineer</h3>
-              <p class="timeline-org">Technische Universit&auml;t Clausthal &middot; Goslar, Germany</p>
-              <p class="timeline-desc">
-                Research on machine learning for structured data, with a focus on tabular domains, model architectures,
-                and representation learning.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-date">Mar 2025 &ndash; Jan 2026</span>
-              <h3 class="timeline-role">Research Assistant &mdash; Machine Learning</h3>
-              <p class="timeline-org">Technische Universit&auml;t Clausthal &middot; Clausthal-Zellerfeld, Germany</p>
-              <p class="timeline-desc">
-                Extended MotherNet for gradient-based decision trees and explored differentiable clustering systems
-                without a predefined number of clusters.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-date">Sep 2023 &ndash; May 2024</span>
-              <h3 class="timeline-role">Research Assistant &mdash; Data Science</h3>
-              <p class="timeline-org">University of Mannheim &middot; Mannheim, Germany</p>
-              <p class="timeline-desc">
-                Built NLP and OCR pipelines for corporate filings and developed large-scale record linkage workflows for
-                empirical research datasets.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-date">Feb 2023 &ndash; Jul 2023</span>
-              <h3 class="timeline-role">Intern &mdash; Customer Success</h3>
-              <p class="timeline-org">SELISE Digital Platforms &middot; Z&uuml;rich, Switzerland</p>
-              <p class="timeline-desc">
-                Analyzed digital system architectures, supported workflow automation, and prepared technical
-                presentations for cross-functional stakeholders.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-date">Jan 2022 &ndash; Apr 2022</span>
-              <h3 class="timeline-role">Intern &mdash; Audit / Assurance</h3>
-              <p class="timeline-org">Ernst &amp; Young &middot; Ravensburg, Germany</p>
-              <p class="timeline-desc">
-                Worked with large financial datasets using process mining, risk modeling, and control evaluation in
-                structured analytical environments.
-              </p>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <!-- ===== Education ===== -->
-      <section id="education" class="section fade-in" aria-label="Education">
-        <div class="container">
-          <h2 class="section-heading">Education</h2>
-          <ol class="timeline" role="list">
-            <li class="timeline-item">
-              <span class="timeline-date">Mar 2026 &ndash; Present</span>
-              <h3 class="timeline-role">Ph.D. Candidate in Machine Learning</h3>
-              <p class="timeline-org">Technische Universit&auml;t Clausthal &middot; Clausthal-Zellerfeld, Germany</p>
-              <p class="timeline-desc">
-                Research on machine learning for structured data, with a focus on tabular domains, model architectures,
-                and representation learning.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-date">Sep 2023 &ndash; Feb 2026</span>
-              <h3 class="timeline-role">M.Sc. Business Informatics</h3>
-              <p class="timeline-org">University of Mannheim &middot; Mannheim, Germany</p>
-              <p class="timeline-desc">
-                Included an exchange semester at the University of Padua, Italy, from September 2025 to February 2026.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-date">Sep 2019 &ndash; Jan 2023</span>
-              <h3 class="timeline-role">B.Sc. Business Informatics</h3>
-              <p class="timeline-org">University of Mannheim &middot; Mannheim, Germany</p>
-              <p class="timeline-desc">
-                Included an exchange semester at the University of Richmond, Robins School of Business, USA, from August
-                to December 2021.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-date">2011 &ndash; 2019</span>
-              <h3 class="timeline-role">Abitur</h3>
-              <p class="timeline-org">Gymnasium Liebfrauenschule Sigmaringen &middot; Sigmaringen, Germany</p>
-              <p class="timeline-desc">General university entrance qualification.</p>
-            </li>
-          </ol>
+            </div>
+          </article>
         </div>
       </section>
 
       <!-- ===== News ===== -->
-      <section id="news" class="section fade-in" aria-label="News and Updates">
+      <section id="news" class="section fade-in" aria-label="News and updates">
         <div class="container">
-          <h2 class="section-heading">News</h2>
+          <p class="eyebrow">Updates</p>
+          <h2 class="section-title">News</h2>
           <ul class="news-list" role="list">
             <li class="news-item">
               <time datetime="2026-07-01" class="news-date">Jul 2026</time>
               <p class="news-text">
-                Our paper
-                <a href="#publications"
-                  >&ldquo;Explaining Tabular Foundation Model Differences Through Meta-Features&rdquo;</a
-                >
-                was accepted at the 2nd ICML Workshop on Foundation Models for Structured Data in Seoul.
+                <em>Explaining Tabular Foundation Model Differences Through Meta-Features</em> was accepted at the 2nd
+                ICML Workshop on Foundation Models for Structured Data.
               </p>
             </li>
             <li class="news-item">
               <time datetime="2026-03-01" class="news-date">Mar 2026</time>
-              <p class="news-text">
-                Started as ML Researcher and PhD Candidate at Technische Universit&auml;t Clausthal.
-              </p>
+              <p class="news-text">Started as ML researcher and PhD candidate at Technische Universität Clausthal.</p>
             </li>
             <li class="news-item">
               <time datetime="2026-02-01" class="news-date">Feb 2026</time>
@@ -1091,9 +353,7 @@
             </li>
             <li class="news-item news-item--faded">
               <time datetime="2025-09-01" class="news-date">Sep 2025</time>
-              <p class="news-text">
-                Began an exchange semester at the University of Padua as part of the M.Sc. program.
-              </p>
+              <p class="news-text">Began exchange semester at the University of Padua as part of the M.Sc. program.</p>
             </li>
           </ul>
         </div>
@@ -1102,167 +362,39 @@
 
     <!-- ===== Footer ===== -->
     <footer class="site-footer" role="contentinfo">
-      <div class="container">
-        <p>&copy; 2026 Markus Herre</p>
+      <div class="container container--wide">
+        <p class="footer-meta">
+          © 2026 Markus Herre <span class="sep">·</span> Built with HTML, CSS &amp; care <span class="sep">·</span>
+          <a href="https://github.com/m-herre/m-herre.github.io" style="color: inherit">Source</a>
+        </p>
         <div class="footer-links" aria-label="Social links">
-          <a href="https://github.com/m-herre" aria-label="GitHub">
-            <svg
-              class="icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              aria-hidden="true"
-            >
+          <a href="https://github.com/m-herre" aria-label="GitHub"
+            ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <path
                 d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-              />
-            </svg>
-          </a>
-          <a href="https://scholar.google.com/citations?user=tRHay2QAAAAJ" aria-label="Google Scholar">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+              /></svg
+          ></a>
+          <a href="https://scholar.google.com/citations?user=tRHay2QAAAAJ" aria-label="Google Scholar"
+            ><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
               <path
                 d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM0.21 10L12 0l11.79 10H18v1.07A8.96 8.96 0 0 0 12 8a8.96 8.96 0 0 0-6 3.07V10H0.21z"
-              />
-            </svg>
-          </a>
-          <a href="https://linkedin.com/in/markus-herre" aria-label="LinkedIn">
-            <svg
-              class="icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              aria-hidden="true"
-            >
+              /></svg
+          ></a>
+          <a href="https://linkedin.com/in/markus-herre" aria-label="LinkedIn"
+            ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
               <rect x="2" y="9" width="4" height="12" />
-              <circle cx="4" cy="4" r="2" />
-            </svg>
-          </a>
-          <a href="mailto:markus.herre@tu-clausthal.de" aria-label="Email">
-            <svg
-              class="icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              aria-hidden="true"
-            >
+              <circle cx="4" cy="4" r="2" /></svg
+          ></a>
+          <a href="mailto:markus.herre@tu-clausthal.de" aria-label="Email"
+            ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <rect x="2" y="4" width="20" height="16" rx="2" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-          </a>
+              <polyline points="22,6 12,13 2,6" /></svg
+          ></a>
         </div>
       </div>
     </footer>
 
-    <script>
-      (function () {
-        "use strict";
-
-        /* ===== Dark Mode Toggle ===== */
-
-        var html = document.documentElement;
-        var toggleBtn = document.querySelector(".theme-toggle");
-
-        function currentTheme() {
-          return (
-            html.getAttribute("data-theme") ||
-            (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-          );
-        }
-
-        toggleBtn.addEventListener("click", function () {
-          var next = currentTheme() === "dark" ? "light" : "dark";
-          html.setAttribute("data-theme", next);
-          localStorage.setItem("theme", next);
-        });
-
-        /* ===== Sticky Header ===== */
-
-        var header = document.getElementById("site-header");
-        var hero = document.getElementById("hero");
-
-        var heroObserver = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                header.classList.remove("header--visible");
-              } else {
-                header.classList.add("header--visible");
-              }
-            });
-          },
-          { threshold: 0 },
-        );
-
-        heroObserver.observe(hero);
-
-        /* ===== Scroll Animations ===== */
-
-        var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var fadeElements = document.querySelectorAll(".fade-in");
-
-        if (prefersReducedMotion) {
-          fadeElements.forEach(function (el) {
-            el.classList.add("is-visible");
-          });
-        } else {
-          var fadeObserver = new IntersectionObserver(
-            function (entries) {
-              entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("is-visible");
-                  fadeObserver.unobserve(entry.target);
-                }
-              });
-            },
-            { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
-          );
-
-          fadeElements.forEach(function (el) {
-            fadeObserver.observe(el);
-          });
-        }
-
-        /* ===== Hamburger Menu ===== */
-
-        var navToggle = document.querySelector(".nav-toggle");
-        var navLinks = document.querySelectorAll(".nav-links a");
-
-        navToggle.addEventListener("click", function () {
-          var isOpen = header.classList.toggle("nav-open");
-          navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-        });
-
-        navLinks.forEach(function (link) {
-          link.addEventListener("click", function () {
-            header.classList.remove("nav-open");
-            navToggle.setAttribute("aria-expanded", "false");
-          });
-        });
-
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && header.classList.contains("nav-open")) {
-            header.classList.remove("nav-open");
-            navToggle.setAttribute("aria-expanded", "false");
-            navToggle.focus();
-          }
-        });
-
-        /* ===== BibTeX Toggle ===== */
-
-        document.querySelectorAll(".pub-bibtex-toggle").forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            var targetId = btn.getAttribute("aria-controls");
-            var target = document.getElementById(targetId);
-            var isHidden = target.hidden;
-            target.hidden = !isHidden;
-            btn.setAttribute("aria-expanded", isHidden ? "true" : "false");
-          });
-        });
-      })();
-    </script>
+    <script src="assets/main.js"></script>
   </body>
 </html>

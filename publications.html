@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Publications — Markus Herre</title>
+    <meta
+      name="description"
+      content="Publications by Markus Herre — ML research on tabular foundation models, meta-features, and benchmarking."
+    />
+    <link rel="canonical" href="https://m-herre.github.io/publications.html" />
+
+    <script>
+      (function () {
+        var t = localStorage.getItem("theme");
+        if (t) document.documentElement.setAttribute("data-theme", t);
+        else if (window.matchMedia("(prefers-color-scheme: dark)").matches)
+          document.documentElement.setAttribute("data-theme", "dark");
+        var d = localStorage.getItem("display");
+        if (d) document.documentElement.setAttribute("data-display", d);
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="site-header always-pinned" id="site-header" role="banner">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo"><span class="dot"></span>Markus Herre</a>
+        <button
+          class="icon-btn nav-toggle"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+          aria-label="Toggle navigation"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
+          </svg>
+        </button>
+        <ul id="nav-menu" class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="publications.html" aria-current="page">Publications</a></li>
+          <li><a href="cv.html">CV</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="icon-btn theme-toggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="12" cy="12" r="4.5" />
+              <line x1="12" y1="2" x2="12" y2="4" />
+              <line x1="12" y1="20" x2="12" y2="22" />
+              <line x1="4.93" y1="4.93" x2="6.34" y2="6.34" />
+              <line x1="17.66" y1="17.66" x2="19.07" y2="19.07" />
+              <line x1="2" y1="12" x2="4" y2="12" />
+              <line x1="20" y1="12" x2="22" y2="12" />
+              <line x1="4.93" y1="19.07" x2="6.34" y2="17.66" />
+              <line x1="17.66" y1="6.34" x2="19.07" y2="4.93" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <header class="page-header" aria-label="Page header">
+      <div class="container">
+        <p class="page-eyebrow">Publications</p>
+        <h1 class="page-title">Selected papers &amp; preprints.</h1>
+        <p class="page-lede">Peer-reviewed papers, preprints, and ongoing work. Most recent first.</p>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="container">
+          <!-- ===== 2026 ===== -->
+          <div class="pub-year-group fade-in">
+            <h2 class="pub-year">2026</h2>
+
+            <article class="pub-entry" id="paper-tabarena">
+              <h3 class="pub-title">
+                <a href="#paper-tabarena">Explaining Tabular Foundation Model Differences Through Meta-Features</a>
+              </h3>
+              <p class="pub-authors">
+                <span class="me">Markus Herre</span>, Andrej Tschalzev, Sascha Marton, Christian Bartelt
+              </p>
+              <p class="pub-venue">2nd ICML Workshop on Foundation Models for Structured Data (2026)</p>
+
+              <div class="prose" style="margin-top: 0.75rem">
+                <p style="font-size: var(--t-sm); color: var(--text-2); max-width: 60ch">
+                  With tabular foundation models now competing with well-tuned tree ensembles, it's often unclear which
+                  family will win on a given dataset. We test whether model-agnostic dataset meta-features can explain
+                  these performance gaps across the 51 TabArena datasets — and find that, under strict statistical
+                  control, global meta-feature approaches are not robust enough to offer reliable explanations.
+                </p>
+              </div>
+
+              <figure class="pub-figure">
+                <img
+                  src="papers/mfa-workshop-figure1.png"
+                  alt="Figure 1: Two panels comparing TabICLv2 and TabPFN-2.6. Left, ROC AUC vs. total feature count d: both models track together until d grows large, where TabICLv2 drops sharply while TabPFN-2.6 stays flat. Right, the TabICLv2-minus-TabPFN AUC gap as a function of redundant nuisance fraction: many independent columns favor TabPFN, but converting them into redundant copies closes the gap toward zero."
+                />
+                <figcaption>
+                  Meta-feature analysis on TabArena: TabICLv2 vs. TabPFN-2.6 across total feature count (left) and
+                  redundant-feature fraction (right).
+                </figcaption>
+              </figure>
+
+              <div class="pub-actions">
+                <a href="papers/mfa_workshop_paper-3.pdf">PDF</a>
+                <a href="https://arxiv.org/abs/2605.28418" rel="external">arXiv</a>
+                <a href="https://openreview.net/forum?id=FJSkVoD4k3" rel="external">OpenReview</a>
+                <button class="pub-bibtex-toggle" aria-expanded="false" aria-controls="bib-tabarena">BibTeX</button>
+              </div>
+              <pre class="pub-bibtex" id="bib-tabarena" hidden>
+@inproceedings{herre2026explaining,
+  title     = {Explaining Tabular Foundation Model Differences Through Meta-Features},
+  author    = {Markus Herre and Andrej Tschalzev and Sascha Marton and Christian Bartelt},
+  booktitle = {2nd ICML Workshop on Foundation Models for Structured Data},
+  year      = {2026},
+  url       = {https://openreview.net/forum?id=FJSkVoD4k3}
+}</pre
+              >
+            </article>
+          </div>
+
+          <hr class="divider" style="margin: 4rem 0" />
+
+          <p class="prose" style="font-size: var(--t-sm); color: var(--text-3)">
+            For a complete list, see my
+            <a href="https://scholar.google.com/citations?user=tRHay2QAAAAJ">Google Scholar</a> profile.
+            <span style="opacity: 0.6">·</span> BibTeX files are also available on request.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container container--wide">
+        <p class="footer-meta">© 2026 Markus Herre <span class="sep">·</span> Built with HTML, CSS &amp; care</p>
+        <div class="footer-links" aria-label="Social links">
+          <a href="https://github.com/m-herre" aria-label="GitHub"
+            ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              /></svg
+          ></a>
+          <a href="https://scholar.google.com/citations?user=tRHay2QAAAAJ" aria-label="Google Scholar"
+            ><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path
+                d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM0.21 10L12 0l11.79 10H18v1.07A8.96 8.96 0 0 0 12 8a8.96 8.96 0 0 0-6 3.07V10H0.21z"
+              /></svg
+          ></a>
+          <a href="mailto:markus.herre@tu-clausthal.de" aria-label="Email"
+            ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <polyline points="22,6 12,13 2,6" /></svg
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV — Markus Herre</title>
+    <meta name="description" content="CV of Markus Herre — experience, education, and academic timeline." />
+    <link rel="canonical" href="https://m-herre.github.io/cv.html" />
+
+    <script>
+      (function () {
+        var t = localStorage.getItem("theme");
+        if (t) document.documentElement.setAttribute("data-theme", t);
+        else if (window.matchMedia("(prefers-color-scheme: dark)").matches)
+          document.documentElement.setAttribute("data-theme", "dark");
+        var d = localStorage.getItem("display");
+        if (d) document.documentElement.setAttribute("data-display", d);
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="site-header always-pinned" id="site-header" role="banner">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo"><span class="dot"></span>Markus Herre</a>
+        <button
+          class="icon-btn nav-toggle"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+          aria-label="Toggle navigation"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
+          </svg>
+        </button>
+        <ul id="nav-menu" class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="cv.html" aria-current="page">CV</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="icon-btn theme-toggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="12" cy="12" r="4.5" />
+              <line x1="12" y1="2" x2="12" y2="4" />
+              <line x1="12" y1="20" x2="12" y2="22" />
+              <line x1="4.93" y1="4.93" x2="6.34" y2="6.34" />
+              <line x1="17.66" y1="17.66" x2="19.07" y2="19.07" />
+              <line x1="2" y1="12" x2="4" y2="12" />
+              <line x1="20" y1="12" x2="22" y2="12" />
+              <line x1="4.93" y1="19.07" x2="6.34" y2="17.66" />
+              <line x1="17.66" y1="6.34" x2="19.07" y2="4.93" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <header class="page-header" aria-label="Page header">
+      <div class="container">
+        <p class="page-eyebrow">Curriculum Vitae</p>
+        <h1 class="page-title">Experience &amp; education.</h1>
+        <p class="page-lede">Academic and professional trajectory. A full PDF version is available on request.</p>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Experience -->
+      <section class="section">
+        <div class="container">
+          <p class="eyebrow">Experience</p>
+          <h2 class="section-title">Roles</h2>
+          <ol class="timeline" role="list">
+            <li class="timeline-item timeline-item--current">
+              <span class="timeline-date">Mar 2026 — Present</span>
+              <h3 class="timeline-role">Machine Learning Researcher &amp; PhD Candidate</h3>
+              <p class="timeline-org">Technische Universität Clausthal · Goslar, Germany</p>
+              <p class="timeline-desc">
+                Research on machine learning for structured data — tabular foundation models, hypernetworks, and
+                representation learning for non-sequential domains.
+              </p>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Mar 2025 — Jan 2026</span>
+              <h3 class="timeline-role">Research Assistant · Machine Learning</h3>
+              <p class="timeline-org">Technische Universität Clausthal · Clausthal-Zellerfeld, Germany</p>
+              <p class="timeline-desc">
+                Extended <em>MotherNet</em> for gradient-based decision trees and explored differentiable clustering
+                systems without a predefined number of clusters.
+              </p>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Sep 2023 — May 2024</span>
+              <h3 class="timeline-role">Research Assistant · Data Science</h3>
+              <p class="timeline-org">University of Mannheim · Mannheim, Germany</p>
+              <p class="timeline-desc">
+                Built NLP and OCR pipelines for corporate filings; developed large-scale record-linkage workflows for
+                empirical research datasets.
+              </p>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Feb 2023 — Jul 2023</span>
+              <h3 class="timeline-role">Intern · Customer Success</h3>
+              <p class="timeline-org">SELISE Digital Platforms · Zürich, Switzerland</p>
+              <p class="timeline-desc">
+                Analysed digital system architectures, supported workflow automation, and prepared technical
+                presentations for cross-functional stakeholders.
+              </p>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Jan 2022 — Apr 2022</span>
+              <h3 class="timeline-role">Intern · Audit / Assurance</h3>
+              <p class="timeline-org">Ernst &amp; Young · Ravensburg, Germany</p>
+              <p class="timeline-desc">
+                Worked with large financial datasets using process mining, risk modelling, and control evaluation in
+                structured analytical environments.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- Education -->
+      <section class="section">
+        <div class="container">
+          <p class="eyebrow">Education</p>
+          <h2 class="section-title">Studies</h2>
+          <ol class="timeline" role="list">
+            <li class="timeline-item timeline-item--current">
+              <span class="timeline-date">Mar 2026 — Present</span>
+              <h3 class="timeline-role">Ph.D. Candidate, Machine Learning</h3>
+              <p class="timeline-org">Technische Universität Clausthal · Clausthal-Zellerfeld, Germany</p>
+              <p class="timeline-desc">
+                Research on ML for structured data — tabular domains, model architectures, representation learning.
+              </p>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Sep 2023 — Feb 2026</span>
+              <h3 class="timeline-role">M.Sc. Business Informatics</h3>
+              <p class="timeline-org">University of Mannheim · Mannheim, Germany</p>
+              <p class="timeline-desc">Exchange semester at the University of Padua, Italy (Sep 2025 — Feb 2026).</p>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Sep 2019 — Jan 2023</span>
+              <h3 class="timeline-role">B.Sc. Business Informatics</h3>
+              <p class="timeline-org">University of Mannheim · Mannheim, Germany</p>
+              <p class="timeline-desc">
+                Exchange semester at the University of Richmond, Robins School of Business, USA (Aug — Dec 2021).
+              </p>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">2011 — 2019</span>
+              <h3 class="timeline-role">Abitur</h3>
+              <p class="timeline-org">Gymnasium Liebfrauenschule Sigmaringen · Germany</p>
+              <p class="timeline-desc">General university entrance qualification.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- Skills snapshot -->
+      <section class="section">
+        <div class="container">
+          <p class="eyebrow">Toolkit</p>
+          <h2 class="section-title">A working sketch.</h2>
+          <ul class="tag-row" role="list">
+            <li class="tag">Python</li>
+            <li class="tag">PyTorch</li>
+            <li class="tag">JAX</li>
+            <li class="tag">scikit-learn</li>
+            <li class="tag">NumPy / Pandas</li>
+            <li class="tag">SQL</li>
+            <li class="tag">TabArena</li>
+            <li class="tag">PyMFE</li>
+            <li class="tag">LaTeX</li>
+            <li class="tag">Git</li>
+            <li class="tag">German (Native)</li>
+            <li class="tag">English (C1)</li>
+            <li class="tag">Italian (B1)</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container container--wide">
+        <p class="footer-meta">© 2026 Markus Herre <span class="sep">·</span> Built with HTML, CSS &amp; care</p>
+        <div class="footer-links" aria-label="Social links">
+          <a href="https://github.com/m-herre" aria-label="GitHub"
+            ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              /></svg
+          ></a>
+          <a href="https://scholar.google.com/citations?user=tRHay2QAAAAJ" aria-label="Google Scholar"
+            ><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path
+                d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM0.21 10L12 0l11.79 10H18v1.07A8.96 8.96 0 0 0 12 8a8.96 8.96 0 0 0-6 3.07V10H0.21z"
+              /></svg
+          ></a>
+          <a href="https://linkedin.com/in/markus-herre" aria-label="LinkedIn"
+            ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" /></svg
+          ></a>
+          <a href="mailto:markus.herre@tu-clausthal.de" aria-label="Email"
+            ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <polyline points="22,6 12,13 2,6" /></svg
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/main.js"></script>
+  </body>
+</html>
