@@ -20,9 +20,9 @@
       content="PhD researcher in machine learning at TU Clausthal, working on tabular foundation models, representation learning, and structured data."
     />
     <meta property="og:url" content="https://m-herre.github.io/" />
-    <meta property="og:image" content="https://m-herre.github.io/papers/mfa-workshop-figure1.png" />
-    <meta property="og:image:width" content="3729" />
-    <meta property="og:image:height" content="1627" />
+    <meta property="og:image" content="https://m-herre.github.io/papers/mfa-workshop-share.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="523" />
     <meta
       property="og:image:alt"
       content="Two-panel figure comparing TabICLv2 and TabPFN-2.6 across feature count and redundancy."
@@ -36,7 +36,7 @@
       name="twitter:description"
       content="PhD researcher in machine learning at TU Clausthal, working on tabular foundation models, representation learning, and structured data."
     />
-    <meta name="twitter:image" content="https://m-herre.github.io/papers/mfa-workshop-figure1.png" />
+    <meta name="twitter:image" content="https://m-herre.github.io/papers/mfa-workshop-share.png" />
     <meta
       name="twitter:image:alt"
       content="Two-panel figure comparing TabICLv2 and TabPFN-2.6 across feature count and redundancy."
@@ -308,10 +308,17 @@
                 control, global meta-feature approaches are not robust enough to offer reliable explanations.
               </p>
               <figure class="pub-figure">
-                <img
-                  src="papers/mfa-workshop-figure1.png"
-                  alt="Figure 1: Two panels comparing TabICLv2 and TabPFN-2.6. Left, ROC AUC vs. total feature count d: both models track together until d grows large, where TabICLv2 drops sharply while TabPFN-2.6 stays flat. Right, the TabICLv2-minus-TabPFN AUC gap as a function of redundant nuisance fraction: many independent columns favor TabPFN, but converting them into redundant copies closes the gap toward zero."
-                />
+                <picture>
+                  <source srcset="papers/mfa-workshop-figure1.webp" type="image/webp" />
+                  <img
+                    src="papers/mfa-workshop-figure1.png"
+                    width="1600"
+                    height="699"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Figure 1: Two panels comparing TabICLv2 and TabPFN-2.6. Left, ROC AUC vs. total feature count d: both models track together until d grows large, where TabICLv2 drops sharply while TabPFN-2.6 stays flat. Right, the TabICLv2-minus-TabPFN AUC gap as a function of redundant nuisance fraction: many independent columns favor TabPFN, but converting them into redundant copies closes the gap toward zero."
+                  />
+                </picture>
               </figure>
               <div class="pub-actions" style="margin-top: 1rem">
                 <a href="publications.html#paper-tabarena">Details</a>
